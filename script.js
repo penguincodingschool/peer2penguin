@@ -115,7 +115,7 @@ const templateRawHTML = `
       }
     </style>
     <div id="drop-in-container">
-      <img src="left.svg" class="drop-in-flex-child" id="drop-in-toggle"/>
+      <img src="https://raw.githubusercontent.com/penguincodingschool/peer2penguin/main/left.svg" class="drop-in-flex-child" id="drop-in-toggle"/>
       <span class="drop-in-flex-child">
         join a room:
       </span>
