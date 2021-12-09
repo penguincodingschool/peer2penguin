@@ -11,11 +11,17 @@ var conn = null;
 
 // dictionary of stuff to send
 var outgoingDict = {}
-//dictionary of stuff you received
+// dictionary of stuff you received
 var incomingDict = {}
 
+// boolean to choose whose ball is used
+var iAmHost = true
+
+// for stopping the sending of data
+var dataInterval;
+
 function sendDict(){
-  console.log("sending dict")
+  //console.debug("sending dict")
   conn.send(outgoingDict)
 }
 
@@ -28,12 +34,13 @@ function onConnectButtonClicked(){
     // show successful connection to different peer
     localStatusEl.innerHTML = conn.peer
     // receive data
-    console.log(conn);
+    iAmHost = false;
+    console.log(`opened connection ${conn}`);
     conn.on('data', function(data){
       incomingDict = data;
     });
-
-    setInterval(sendDict, 1);
+    sendDict()
+    dataInterval = setInterval(sendDict, 10);
 });
 }
 
@@ -52,12 +59,14 @@ peer.on('connection', function(incomingConn) {
   console.log(conn)
 
   conn.on("open", function(){
-    setInterval(sendDict, 1);
+    sendDict()
+    dataInterval = setInterval(sendDict, 10);
+    iAmHost = true;
   })
   
   conn.on('data', function(data){
-      console.log("Received from remote peer:")
-      console.log(data)
+      console.debug("Received from remote peer:")
+      console.debug(data)
       incomingDict = data;
   });
 });  
@@ -115,7 +124,7 @@ const templateRawHTML = `
       }
     </style>
     <div id="drop-in-container">
-      <img src="https://raw.githubusercontent.com/penguincodingschool/peer2penguin/main/left.svg" class="drop-in-flex-child" id="drop-in-toggle"/>
+      <img src="left.svg" class="drop-in-flex-child" id="drop-in-toggle"/>
       <span class="drop-in-flex-child">
         join a room:
       </span>
