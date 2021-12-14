@@ -22,12 +22,14 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
-<body style="padding: 1em 20% 1em 20%; font-size: 2em;">
+<body style="padding: 1em 20% 1em 20%; font-size: 1.5em;">
 <h1>peer2penguin</h1>
   <p>peer2penguin is the name of a PeerJS wrapper that allows you to use three variables in the global namespace: <code>incomingDict</code>, <code>outgoingDict</code>, and <code>iAmHost</code>.</p>
   <p>It places a little orange arrow at the top of your screen that tells you your "room ID" and allows you to connect to others' rooms. Room IDs are assigned at random, chosen between 1 and 256, and sometimes collide or are unavailable. If your room ID says "loading..." for more than 3 seconds, refresh the page. Then, you will be able to connect to a remote Peer as a non-Host, sending data every 10ms.</p>
   <p><code>iAmHost</code> is a boolean that is updated to <code>false</code> if you connect to a remote Peer's ID. </p>
   <p><code>incomingDict</code> is a JS object that holds the data that your peer has sent you. It updates every 10ms.</p>
   <p><code>outgoingDict</code> is a JS object that holds the data that you are sending your peer. It updates every 10ms.</p>
+  <h2>examples on repl.it</h2>
+  <p><a href="https://p2p-pong.luiscollado2.repl.co/">pong</a></p>
 </body>
 </html>
